@@ -47,15 +47,25 @@ This project demonstrates a CI/CD pipeline using AWS services to build, push, an
 ---------------------------
 
 In the AWS Management Console, navigate to the AWS CodeBuild service.
+
 Click on the "Create build project" button.
+
 Provide a name for your build project.
-For the source provider, choose GitHub and connect to github.
-Create a service role.
-Add build spec file path
+
+For the source provider, choose GitHub and connect to github.(https://github.com/Renu987/AWS-DevOps-Projects)
+
+Create a service role 
+
+Add build spec file path (AWS-DevOps-Projects/buildspec.yml)
+
 Create build project.
+
 Go to AWS systems Manager-->Parameter store --> Add ecr url.
+
 Go to IAM role and attach AWS SSM full access policy to the created role
+
 Create ECR Repo (renuka2422)
+
 Start build --> u can see the image is build and pushed to your ecr repo.
 
 
