@@ -53,11 +53,18 @@ Click on the "Create build project" button.
 Provide a name for your build project.
 
 For the source provider, choose GitHub and connect to github.(https://github.com/Renu987/AWS-DevOps-Projects)
+
 Create a service role.
+
 Add build spec file path (Project-DockerHub/buildspec.yml)
+
 Create build project.
+
+
 Go to AWS systems Manager-->Parameter store --> Add docker url,docker username, docker password.
+
 Go to IAM role and attach AWS SSM full access policy to the created role
+
 Start build --> u can see the image is build and pushed to your docker hub repository.
 
 
