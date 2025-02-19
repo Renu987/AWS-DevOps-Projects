@@ -47,11 +47,14 @@ This project demonstrates a CI/CD pipeline using AWS services to build, push, an
 ---------------------------
 
 In the AWS Management Console, navigate to the AWS CodeBuild service.
+
 Click on the "Create build project" button.
+
 Provide a name for your build project.
-For the source provider, choose GitHub and connect to github.
+
+For the source provider, choose GitHub and connect to github.(https://github.com/Renu987/AWS-DevOps-Projects)
 Create a service role.
-Add build spec file path
+Add build spec file path (Project-DockerHub/buildspec.yml)
 Create build project.
 Go to AWS systems Manager-->Parameter store --> Add docker url,docker username, docker password.
 Go to IAM role and attach AWS SSM full access policy to the created role
