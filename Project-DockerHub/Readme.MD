@@ -41,7 +41,8 @@ This project demonstrates a CI/CD pipeline using AWS services to build, push, an
 +-------------------+
 
 
-Configure AWS CodeBuild:
+
+#Configure AWS CodeBuild:
 ---------------------------
 
 
@@ -60,12 +61,13 @@ Start build --> u can see the image is build and pushed to your docker hub repos
 --------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Configure AWS Code deploy:
+#Configure AWS Code deploy:
 -----------------------------
 
-First create an EC2 instance --> add tags --> Attach IAM role (AmazonEC2RoleforAWSCodeDeploy + AWSCodeDeployRole)
+First create an EC2 instance --> add tags --> Attach IAM role (Use case - EC2 ---> AmazonEC2RoleforAWSCodeDeploy + AWSCodeDeployRole)
 Connect to EC2 instance and install docker , Agent for Code deploy using below commands :
 
+```plaintext
 sudo yum install -y ruby
 sudo yum install -y wget
 cd /home/ec2-user
@@ -73,4 +75,11 @@ wget https://aws-codedeploy-us-west-2.s3.us-west-2.amazonaws.com/latest/install
 chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent status (it should be in running state).
+
+```plaintext
+
+Go to AWS code deploy --> Application--> Create an application --> EC2
+Open created application -->Create Deployment group -->Attach Role (Use case - Code deploy--> AWSCodeDeployRole+EC2 full access)--- IN-Place--EC2 instance--Tag
+Create Deployments ---> Deployment grp--->Guthub --> Repo Name (Renu987/AWS-DevOps-Projects) -->commit id (last commit id from github) --> create 
+** Make sure the appspec.yml, scripts( startcontainer.sh,stopcontainer.sh) file is in root directory while executing
 
