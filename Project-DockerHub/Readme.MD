@@ -60,3 +60,17 @@ Start build --> u can see the image is build and pushed to your docker hub repos
 --------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------
 
+Configure AWS Code deploy:
+-----------------------------
+
+First create an EC2 instance --> add tags --> Attach IAM role (AmazonEC2RoleforAWSCodeDeploy + AWSCodeDeployRole)
+Connect to EC2 instance and install docker , Agent for Code deploy using below commands :
+
+sudo yum install -y ruby
+sudo yum install -y wget
+cd /home/ec2-user
+wget https://aws-codedeploy-us-west-2.s3.us-west-2.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent status (it should be in running state).
+
