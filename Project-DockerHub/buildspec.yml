@@ -24,8 +24,8 @@ phases:
       - echo "Building Docker image..."
       - cd Project-DockerHub/  # Navigate to the app directory (if necessary)
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
-      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
-      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest"
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/renu-python-app:latest" .
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/renu-python-app:latest"
 
   post_build:
     commands:
@@ -34,4 +34,4 @@ phases:
 artifacts:
   files:
     - '**/*'  # Adjust as needed to capture relevant files
-  base-directory: ../simple-python-app  # The base directory to include artifacts from
+  base-directory: ../Project-DockerHub  # The base directory to include artifacts from
