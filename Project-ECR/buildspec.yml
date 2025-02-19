@@ -1,0 +1,44 @@
+
+version: 0.2
+
+env:
+  parameter-store:
+   # DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username  # You can keep or remove this if not using DockerHub
+   # DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password  # You can keep or remove this if not using DockerHub
+   # DOCKER_REGISTRY_URL: /myapp/docker-registry/url   # You can keep or remove this if not using DockerHub
+    ECR_REPOSITORY_URI: /myapp/ecr/repository/uri     # Replace with your actual ECR repository URI (e.g., 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo)
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11  # Specify the Python version you need
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r Project-ECR/requirements.txt  # Install Python dependencies
+
+  pre_build:
+    commands:
+      - echo "Running tests..."
+      # Add any test or setup commands here if needed
+      - echo "Logging into AWS ECR..."
+      # Log in to AWS ECR
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_REPOSITORY_URI
+      # Replace us-east-1 with the region where your ECR repository is located
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - cd Project-ECR/
+      - docker build -t "$ECR_REPOSITORY_URI:code-build" .
+      - echo "Docker image built successfully!"
+      
+  post_build:
+    commands:
+      - echo "Pushing Docker image to ECR..."
+      - docker push "$ECR_REPOSITORY_URI:code-build"
+      - echo "Build and push completed successfully!"
+
+artifacts:
+  files:
+    - '**/*'  # Adjust as needed to capture relevant files
+  base-directory: ../Project-ECR  # The base directory to include artifacts from
