@@ -63,7 +63,7 @@ Create build project.
 
 Go to AWS systems Manager-->Parameter store --> Add ecr url.
 
-Go to IAM role and attach AWS SSM full access policy to the created role
+Go to IAM role and attach AWS SSM full access policy, ECR policy to the created role (AmazonSSMFullAccess + AmazonEC2ContainerRegistryFullAccess + AmazonElasticContainerRegistryPublicFullAccess )
 
 Start build --> u can see the image is build and pushed to your ecr repo.
 
