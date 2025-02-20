@@ -3,10 +3,10 @@ version: 0.2
 
 env:
   parameter-store:
-   # DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username  # You can keep or remove this if not using DockerHub
-   # DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password  # You can keep or remove this if not using DockerHub
-   # DOCKER_REGISTRY_URL: /myapp/docker-registry/url   # You can keep or remove this if not using DockerHub
-    ECR_REPOSITORY_URI: /myapp/ecr/repository/uri     # Replace with your actual ECR repository URI (e.g., 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo)
+   DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username  # You can keep or remove this if not using DockerHub
+   DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password  # You can keep or remove this if not using DockerHub
+   DOCKER_REGISTRY_URL: /myapp/docker-registry/url   # You can keep or remove this if not using DockerHub
+   ECR_REPOSITORY_URI: /myapp/ecr/repository/uri     # Replace with your actual ECR repository URI (e.g., 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo)
 
 phases:
   install:
