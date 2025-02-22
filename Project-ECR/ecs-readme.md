@@ -9,7 +9,7 @@ aws ecs create-service --cluster ecs-demo-cluster --service-name ecs-demo-servic
 
 aws ecs update-service --cluster ecs-demo-cluster --service ecs-demo-service --force-new-deployment --region us-east-1
 
-
+```
 
 {
     "family": "ecs-demo-task",
@@ -37,6 +37,6 @@ aws ecs update-service --cluster ecs-demo-cluster --service ecs-demo-service --f
     "memory": "512"
   }
   
-
+```
 
 
