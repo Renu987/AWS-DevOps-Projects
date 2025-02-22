@@ -1,0 +1,25 @@
+{
+    "family": "ecs-demo-task",
+    "executionRoleArn": "arn:aws:iam::339712876542:role/ecsTaskExecutionRole", # replace this
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "name": "ecs-demo-container",
+        "image": "339712876542.dkr.ecr.us-east-1.amazonaws.com/renuka2422:code-build", # replace with image
+        "memory": 512,
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 8000,
+            "hostPort": 8000 # replace with your application port
+          }
+        ]
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+  }
