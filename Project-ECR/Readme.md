@@ -57,7 +57,7 @@ For the source provider, choose GitHub and connect to github.(https://github.com
 
 Create a service role 
 
-Add build spec file path (AWS-DevOps-Projects/buildspec.yml)
+Add build spec file path (Project-ECR/buildspec.yml)
 
 Create build project.
 
