@@ -1,3 +1,4 @@
+Go to codespace in which awscli is installed then aws configure -- connect to your account and perform the below command for  ecs 
 
 aws ecs create-cluster --cluster-name ecs-demo-cluster --region us-east-1
 
