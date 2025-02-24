@@ -1,4 +1,3 @@
-
 version: 0.2
 
 env:
@@ -38,7 +37,12 @@ phases:
       - docker push "$ECR_REPOSITORY_URI:code-build"
       - echo "Build and push completed successfully!"
 
+# artifacts:
+ # files:
+   # - '**/*'  # Adjust as needed to capture relevant files
+  # base-directory: ../Project-ECR  # The base directory to include artifacts from
+
+
 artifacts:
   files:
-    - '**/*'  # Adjust as needed to capture relevant files
-  base-directory: ../Project-ECR  # The base directory to include artifacts from
+    - imagedefinitions.json
