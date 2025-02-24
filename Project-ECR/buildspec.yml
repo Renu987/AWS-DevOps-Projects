@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Generating imagedefinitions.json file"
+      - echo '[{"name":"ecs-demo-container","imageUri":"339712876542.dkr.ecr.us-east-1.amazonaws.com/renuka2422:code-build"}]' > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
