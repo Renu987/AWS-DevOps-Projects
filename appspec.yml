@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: <task_definition_arn>
+        TaskDefinition: arn:aws:ecs:us-east-1:339712876542:task-definition/ecs-demo-task:6
         LoadBalancerInfo:
-          ContainerName: my-app
-          ContainerPort: 80
+          ContainerName: ecs-demo-container
+          ContainerPort: 8000
