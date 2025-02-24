@@ -46,3 +46,56 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
+
+----------------------------------------------------------
+------------------------------------------------------------
+
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
+    DOCKER_REGISTRY_URL: /myapp/docker-registry/url
+    ECR_REPOSITORY_URI: /myapp/ecr/repository/uri
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r Project-ECR/requirements.txt
+
+  pre_build:
+    commands:
+      - echo "Running tests..."
+      - echo "Logging into Docker Hub..."
+      - docker login --username $DOCKER_REGISTRY_USERNAME --password $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
+      - echo "Logging into AWS ECR..."
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_REPOSITORY_URI
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - cd Project-ECR/
+      - docker build -t "$ECR_REPOSITORY_URI:code-build" .
+      - echo "Docker image built successfully!"
+
+  post_build:
+    commands:
+      - echo "Pushing Docker image to ECR..."
+      - docker push "$ECR_REPOSITORY_URI:code-build"
+      - echo "Build and push completed successfully!"
+      - echo "Creating imagedefinitions.json..."
+      - echo '[{"name":"ecs-demo-container","imageUri":"'"$ECR_REPOSITORY_URI:code-build"'"}]' > ../imagedefinitions.json
+      - echo "imagedefinitions.json created successfully!"
+      - echo "ECS deployment..."
+      # aws ecs update-service --cluster ecs-demo-cluster --service ecs-demo-service --force-new-deployment --region us-east-1
+
+artifacts:
+  files:
+    - imagedefinitions.json
+  discard-paths: yes
+  name: ImageDefinitions
+
