@@ -78,6 +78,10 @@ First create an EC2 instance --> add tags --> Attach IAM role (Use case - EC2 --
 Connect to EC2 instance and install docker , Agent for Code deploy using below commands :
 
 ```plaintext
+sudo yum install docker -y
+systemctl status docker
+systemctl enable docker
+systemctl start docker
 sudo yum install -y ruby
 sudo yum install -y wget
 cd /home/ec2-user
@@ -91,5 +95,16 @@ sudo service codedeploy-agent status (it should be in running state).
 
 Go to AWS code deploy --> Application--> Create an application --> EC2
 Open created application -->Create Deployment group -->Attach Role (Use case - Code deploy--> AWSCodeDeployRole+EC2 full access)--- IN-Place--EC2 instance--Tag
-Create Deployments ---> Deployment grp--->Guthub --> Repo Name (Renu987/AWS-DevOps-Projects) -->commit id (last commit id from github) --> create 
+Create Deployments ---> Deployment grp--->Github --> Repo Name (Renu987/AWS-DevOps-Projects) -->commit id (last commit id from github) --> create 
 ** Make sure the appspec.yml, scripts( startcontainer.sh,stopcontainer.sh) file is in root directory while executing **
+
+## AWS Codepipeline:
+----------------------------
+
+Source Provider : Github
+Build stage : Code build 
+Deploy stage : Code deploy
+
+##Access the application:
+-----------------------------
+Once the pipeline is succeeded you can go to Ec2 instance --> Copy the public ip address : port  in the browser you can see the application output
