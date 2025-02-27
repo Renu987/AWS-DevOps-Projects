@@ -45,10 +45,6 @@ aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam_policy.json
 
-aws iam attach-role-policy \
-    --policy-arn arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy \
-    --role-name AmazonEKSLoadBalancerControllerRole
-
 eksctl create iamserviceaccount \
   --cluster=demo-cluster \ # cluster name 
   --namespace=kube-system \
@@ -78,13 +74,48 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 
 kubectl get deployment -n kube-system aws-load-balancer-controller
 
+#if nothing is ready state
+
+#  Reattach IAM policy AWSLoadBalancerControllerIAMPolicy by editing , adding these below lines and save and run below command
+
+{
+			"Effect": "Allow",
+			"Action": [
+				"elasticloadbalancing:DescribeListenerAttributes",
+				"elasticloadbalancing:DescribeListeners",
+				"elasticloadbalancing:DescribeLoadBalancers",
+				"elasticloadbalancing:DescribeRules",
+				"elasticloadbalancing:DescribeTags",
+				"elasticloadbalancing:DescribeTargetGroups",
+				"elasticloadbalancing:DescribeTargetHealth",
+				"elasticloadbalancing:ModifyListener",
+				"elasticloadbalancing:ModifyRule",
+				"elasticloadbalancing:ModifyTargetGroupAttributes",
+				"elasticloadbalancing:ModifyLoadBalancerAttributes"
+			],
+			"Resource": "*"
+		}
+
+aws iam attach-role-policy \
+    --policy-arn arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy \
+    --role-name AmazonEKSLoadBalancerControllerRole
+
 kubectl rollout restart deployment aws-load-balancer-controller -n kube-system
+
+```
+
+# check the app output 
+
+```
+Go to load balancer ---> click on DNS address --> in browser the app is visible
 
 ```
 
 # Delete the entire setup once done by using below command:
 
 ```
+Delete load balancer and target groups manaually first then below command in cmd
+
 eksctl delete cluster --name demo-cluster --region us-east-1
 
 ```
