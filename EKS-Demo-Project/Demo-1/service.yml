@@ -7,6 +7,6 @@ spec:
     app: my-app
   ports:
     - protocol: TCP
-      port: 8000
-      targetPort: 8000
+      port: 8000    # port to expose to outside world
+      targetPort: 8000  # container port 
   type: LoadBalancer
