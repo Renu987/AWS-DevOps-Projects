@@ -16,4 +16,4 @@ spec:
       - name: my-container
         image: 339712876542.dkr.ecr.us-east-1.amazonaws.com/renuka2422:code-build # replace with your image url:tag
         ports:
-        - containerPort: 8000
+        - containerPort: 8000  # app port
