@@ -1,6 +1,6 @@
-# CI/CD Pipeline with AWS Pushing image to ECR and deploying to EC2 instance
+# Demo of Python based application using CI/CD Pipeline with AWS code build to push the image to ECR and deploying to ECS service.
 
-This project demonstrates a CI/CD pipeline using AWS services to build, push, and deploy a Docker-based application from a GitHub repository.
+This project demonstrates a CI/CD pipeline using AWS services to build, push, and deploy a python-based application from a GitHub repository.
 
 ## Architecture Diagram
 
