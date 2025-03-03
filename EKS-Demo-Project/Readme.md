@@ -4,14 +4,14 @@
 
 # Pre-requisites: 
 
-# Download eksctl in your local using below commands:
+* Download eksctl in your local using below commands:
 ```
 wget https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz -O eksctl.tar.gz
 tar -xzf eksctl.tar.gz
 sudo mv eksctl /usr/local/bin
 eksctl version
 ```
-# Download kubectl in your local using below commands:
+* Download kubectl in your local using below commands:
 
 ```
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -19,16 +19,16 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
-# Create cluster :
+* Create cluster :
 ```
 eksctl create cluster --name demo-cluster --region us-east-1 --fargate
 ```
-# Create a fargate profile with required namespace:
+* Create a fargate profile with required namespace:
 
 ```
 eksctl create fargateprofile --cluster demo-cluster --region us-east-1 --name alb-sample-app --namespace game-2048
 ```
-# Deploy the app file now:
+* Deploy the app file now:
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
 
@@ -40,7 +40,7 @@ eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
 
 ```
 
-# Create IAM role and policy:
+* Create IAM role and policy:
 
 ```
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.11.0/docs/install/iam_policy.json
@@ -58,7 +58,7 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-# install and add helm:
+* install and add helm:
 ```
 helm repo add eks https://aws.github.io/eks-charts
 
@@ -73,7 +73,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set vpcId=vpc-06a28a92dafa7bb0f
 ```
 
-# Deployment : 
+* Deployment : 
 ```
 
 kubectl get deployment -n kube-system aws-load-balancer-controller
@@ -108,7 +108,7 @@ kubectl rollout restart deployment aws-load-balancer-controller -n kube-system
 
 ```
 
-# check the app output 
+* check the app output 
 
 ```
 Go to load balancer ---> click on DNS address --> in browser the app is visible
@@ -117,7 +117,7 @@ Go to load balancer ---> click on DNS address --> in browser the app is visible
 ![image](https://github.com/user-attachments/assets/c3dd444d-7c62-4dad-8cae-66f619431535)
 
 
-# Delete the entire setup once done by using below command:
+* Delete the entire setup once done by using below command:
 
 ```
 Delete load balancer and target groups manaually first then below command in cmd
