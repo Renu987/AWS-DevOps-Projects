@@ -54,9 +54,9 @@ export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 * step 4 : create s3 bucket
 ```
 aws s3api create-bucket \
-    --bucket prefix-example-com-state-store \
+    --bucket prefix-example-com-state-store \ # replace your bucket name
     --region us-east-1
-aws s3api put-bucket-versioning --bucket prefix-example-com-state-store  --versioning-configuration Status=Enabled
+aws s3api put-bucket-versioning --bucket prefix-example-com-state-store  --versioning-configuration Status=Enabled # bucket name
 ```
 
 * step 5 : create ssh key pair
@@ -68,7 +68,7 @@ ssh-keygen -t rsa -b 4096 -C "renu@gmail.com"
 -> for local dns without any domain purchase
 ```
 export NAME=renucluster.k8s.local  
-export KOPS_STATE_STORE=s3://renu-24
+export KOPS_STATE_STORE=s3://renu-24  # bucket name
 ```
 * step 7 : create kops cluster
 ```
@@ -76,6 +76,8 @@ kops create cluster \
     --name=${NAME} \
     --cloud=aws \
     --zones=us-east-1a
+
+kops validate cluster --wait 10m
 ```
 * after this follow on screen commands - like adding --yes flag wait command for 10 min for cluster creation 
 until kops says cluster is ready
@@ -99,10 +101,10 @@ verify - kubectl get all -n ingress-nginx
 
 * step 10 : create a helm chart -> this will create a helm chart folder for your application
 ```
-helm create renu-chart
+helm create renu-chart  # chartname
 # Give values in values.yml --> go to templates and create a secret.yml as below 
 helm package renu-chart
-helm install myrelease renu-chart
+helm install myrelease renu-chart # chart name, release name
 verify - kubectl get all
 verify deployment - serive - pods - ingress are created
 
