@@ -1,8 +1,8 @@
-# Demo of deploying 2048 gaming application using Amazon EKS
+# Demo of deploying 2048 Gaming application using Amazon EKS
 
 * keep the devcontainer.json file in the github repo in .devcontainer folder with required features instead of installing everything
 
-# Pre-requisites: 
+* Pre-requisites: 
 
 * Download eksctl in your local using below commands:
 ```
