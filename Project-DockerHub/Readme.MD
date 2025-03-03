@@ -1,6 +1,6 @@
-# CI/CD Pipeline with AWS Pushing image to Docker Hub 
+# Demo of Python based application using CI/CD Pipeline with AWS CodeBuild to Push the image to Docker Hub and AWS codeDeploy to deploy to EC2 instance.
 
-This project demonstrates a CI/CD pipeline using AWS services to build, push, and deploy a Docker-based application from a GitHub repository.
+This project demonstrates a CI/CD pipeline using AWS services to build, push, and deploy a python-based application from a GitHub repository.
 
 ## Architecture Diagram
 
