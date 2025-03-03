@@ -1,4 +1,5 @@
-## Make sure you have kubectl and eksctl installed first to perform this demo
+# Demo for 
+* Pre-requisites: Make sure you have kubectl and eksctl installed first to perform this demo
 
 # Connect to your aws account 
 ```
