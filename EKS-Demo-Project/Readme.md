@@ -1,15 +1,17 @@
 # Demo of deploying 2048 gaming application using Amazon EKS
 
-# keep the devcontainer.json file in the github repo in .devcontainer folder with required features instead of installing everything 
+* keep the devcontainer.json file in the github repo in .devcontainer folder with required features instead of installing everything
 
-## Download eksctl in your local using below commands:
+# Pre-requisites: 
+
+# Download eksctl in your local using below commands:
 ```
 wget https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz -O eksctl.tar.gz
 tar -xzf eksctl.tar.gz
 sudo mv eksctl /usr/local/bin
 eksctl version
 ```
-## Download kubectl in your local using below commands:
+# Download kubectl in your local using below commands:
 
 ```
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
