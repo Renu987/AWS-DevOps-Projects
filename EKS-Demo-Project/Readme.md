@@ -111,10 +111,9 @@ kubectl rollout restart deployment aws-load-balancer-controller -n kube-system
 ```
 Go to load balancer ---> click on DNS address --> in browser the app is visible
 
-![image](https://github.com/user-attachments/assets/9afed084-6a61-46bc-ab72-40e158fa7bfe)
-
-
 ```
+![image](https://github.com/user-attachments/assets/c3dd444d-7c62-4dad-8cae-66f619431535)
+
 
 # Delete the entire setup once done by using below command:
 
