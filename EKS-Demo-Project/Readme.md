@@ -1,3 +1,5 @@
+# Demo of deploying 2048 gaming application using Amazon EKS
+
 # keep the devcontainer.json file in the github repo in .devcontainer folder with required features instead of installing everything 
 
 ## Download eksctl in your local using below commands:
@@ -108,6 +110,9 @@ kubectl rollout restart deployment aws-load-balancer-controller -n kube-system
 
 ```
 Go to load balancer ---> click on DNS address --> in browser the app is visible
+
+![image](https://github.com/user-attachments/assets/9afed084-6a61-46bc-ab72-40e158fa7bfe)
+
 
 ```
 
